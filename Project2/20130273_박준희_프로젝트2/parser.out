@@ -1,0 +1,197 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expr
+Rule 1     expr -> LPAREN expr RPAREN
+Rule 2     expr -> expr UNION expr
+Rule 3     expr -> expr CONCATE expr
+Rule 4     expr -> expr CLOSURE
+Rule 5     expr -> EPSILON
+Rule 6     expr -> SIM
+
+Terminals, with rules where they appear
+
+CLOSURE              : 4
+CONCATE              : 3
+EPSILON              : 5
+LPAREN               : 1
+RPAREN               : 1
+SIM                  : 6
+UNION                : 2
+error                : 
+
+Nonterminals, with rules where they appear
+
+expr                 : 1 2 2 3 3 4 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expr
+    (1) expr -> . LPAREN expr RPAREN
+    (2) expr -> . expr UNION expr
+    (3) expr -> . expr CONCATE expr
+    (4) expr -> . expr CLOSURE
+    (5) expr -> . EPSILON
+    (6) expr -> . SIM
+
+    LPAREN          shift and go to state 3
+    EPSILON         shift and go to state 2
+    SIM             shift and go to state 1
+
+    expr                           shift and go to state 4
+
+state 1
+
+    (6) expr -> SIM .
+
+    UNION           reduce using rule 6 (expr -> SIM .)
+    CONCATE         reduce using rule 6 (expr -> SIM .)
+    CLOSURE         reduce using rule 6 (expr -> SIM .)
+    $end            reduce using rule 6 (expr -> SIM .)
+    RPAREN          reduce using rule 6 (expr -> SIM .)
+
+
+state 2
+
+    (5) expr -> EPSILON .
+
+    UNION           reduce using rule 5 (expr -> EPSILON .)
+    CONCATE         reduce using rule 5 (expr -> EPSILON .)
+    CLOSURE         reduce using rule 5 (expr -> EPSILON .)
+    $end            reduce using rule 5 (expr -> EPSILON .)
+    RPAREN          reduce using rule 5 (expr -> EPSILON .)
+
+
+state 3
+
+    (1) expr -> LPAREN . expr RPAREN
+    (1) expr -> . LPAREN expr RPAREN
+    (2) expr -> . expr UNION expr
+    (3) expr -> . expr CONCATE expr
+    (4) expr -> . expr CLOSURE
+    (5) expr -> . EPSILON
+    (6) expr -> . SIM
+
+    LPAREN          shift and go to state 3
+    EPSILON         shift and go to state 2
+    SIM             shift and go to state 1
+
+    expr                           shift and go to state 5
+
+state 4
+
+    (0) S' -> expr .
+    (2) expr -> expr . UNION expr
+    (3) expr -> expr . CONCATE expr
+    (4) expr -> expr . CLOSURE
+
+    UNION           shift and go to state 6
+    CONCATE         shift and go to state 8
+    CLOSURE         shift and go to state 7
+
+
+state 5
+
+    (1) expr -> LPAREN expr . RPAREN
+    (2) expr -> expr . UNION expr
+    (3) expr -> expr . CONCATE expr
+    (4) expr -> expr . CLOSURE
+
+    RPAREN          shift and go to state 9
+    UNION           shift and go to state 6
+    CONCATE         shift and go to state 8
+    CLOSURE         shift and go to state 7
+
+
+state 6
+
+    (2) expr -> expr UNION . expr
+    (1) expr -> . LPAREN expr RPAREN
+    (2) expr -> . expr UNION expr
+    (3) expr -> . expr CONCATE expr
+    (4) expr -> . expr CLOSURE
+    (5) expr -> . EPSILON
+    (6) expr -> . SIM
+
+    LPAREN          shift and go to state 3
+    EPSILON         shift and go to state 2
+    SIM             shift and go to state 1
+
+    expr                           shift and go to state 10
+
+state 7
+
+    (4) expr -> expr CLOSURE .
+
+    UNION           reduce using rule 4 (expr -> expr CLOSURE .)
+    CONCATE         reduce using rule 4 (expr -> expr CLOSURE .)
+    CLOSURE         reduce using rule 4 (expr -> expr CLOSURE .)
+    $end            reduce using rule 4 (expr -> expr CLOSURE .)
+    RPAREN          reduce using rule 4 (expr -> expr CLOSURE .)
+
+
+state 8
+
+    (3) expr -> expr CONCATE . expr
+    (1) expr -> . LPAREN expr RPAREN
+    (2) expr -> . expr UNION expr
+    (3) expr -> . expr CONCATE expr
+    (4) expr -> . expr CLOSURE
+    (5) expr -> . EPSILON
+    (6) expr -> . SIM
+
+    LPAREN          shift and go to state 3
+    EPSILON         shift and go to state 2
+    SIM             shift and go to state 1
+
+    expr                           shift and go to state 11
+
+state 9
+
+    (1) expr -> LPAREN expr RPAREN .
+
+    UNION           reduce using rule 1 (expr -> LPAREN expr RPAREN .)
+    CONCATE         reduce using rule 1 (expr -> LPAREN expr RPAREN .)
+    CLOSURE         reduce using rule 1 (expr -> LPAREN expr RPAREN .)
+    $end            reduce using rule 1 (expr -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 1 (expr -> LPAREN expr RPAREN .)
+
+
+state 10
+
+    (2) expr -> expr UNION expr .
+    (2) expr -> expr . UNION expr
+    (3) expr -> expr . CONCATE expr
+    (4) expr -> expr . CLOSURE
+
+    UNION           reduce using rule 2 (expr -> expr UNION expr .)
+    $end            reduce using rule 2 (expr -> expr UNION expr .)
+    RPAREN          reduce using rule 2 (expr -> expr UNION expr .)
+    CONCATE         shift and go to state 8
+    CLOSURE         shift and go to state 7
+
+  ! CONCATE         [ reduce using rule 2 (expr -> expr UNION expr .) ]
+  ! CLOSURE         [ reduce using rule 2 (expr -> expr UNION expr .) ]
+  ! UNION           [ shift and go to state 6 ]
+
+
+state 11
+
+    (3) expr -> expr CONCATE expr .
+    (2) expr -> expr . UNION expr
+    (3) expr -> expr . CONCATE expr
+    (4) expr -> expr . CLOSURE
+
+    UNION           reduce using rule 3 (expr -> expr CONCATE expr .)
+    CONCATE         reduce using rule 3 (expr -> expr CONCATE expr .)
+    $end            reduce using rule 3 (expr -> expr CONCATE expr .)
+    RPAREN          reduce using rule 3 (expr -> expr CONCATE expr .)
+    CLOSURE         shift and go to state 7
+
+  ! CLOSURE         [ reduce using rule 3 (expr -> expr CONCATE expr .) ]
+  ! UNION           [ shift and go to state 6 ]
+  ! CONCATE         [ shift and go to state 8 ]
+
